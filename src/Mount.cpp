@@ -245,8 +245,8 @@ void Mount::configureRAStepper(byte pin1, byte pin2, int maxSpeed, int maxAccele
   _stepperTRK->setMaxSpeed(10000);
   _stepperTRK->setAcceleration(5000);
 
-  _stepperRA->setPinsInverted(NORTHERN_HEMISPHERE == RA_INVERT_DIR, false, false);
-  _stepperTRK->setPinsInverted(NORTHERN_HEMISPHERE == RA_INVERT_DIR, false, false);
+  _stepperRA->setPinsInverted(NORTHERN_HEMISPHERE == RA_INVERT_DIR, RA_INVERT_STEP == 1, RA_INVERT_EN == 1);
+  _stepperTRK->setPinsInverted(NORTHERN_HEMISPHERE == RA_INVERT_DIR, RA_INVERT_STEP == 1, RA_INVERT_EN == 1);
 }
 #endif
 
@@ -289,10 +289,8 @@ void Mount::configureDECStepper(byte pin1, byte pin2, int maxSpeed, int maxAccel
   _stepperGUIDE->setMaxSpeed(10000);
   _stepperGUIDE->setAcceleration(5000);
 
-  #if DEC_INVERT_DIR == 1
-  _stepperDEC->setPinsInverted(true, false, false);
-  _stepperGUIDE->setPinsInverted(true, false, false);
-  #endif
+  _stepperDEC->setPinsInverted(DEC_INVERT_DIR == 1, DEC_INVERT_STEP == 1, DEC_INVERT_EN == 1);
+  _stepperGUIDE->setPinsInverted(DEC_INVERT_DIR == 1, DEC_INVERT_STEP == 1, DEC_INVERT_EN == 1);
 }
 #endif
 
@@ -965,10 +963,10 @@ String Mount::getStepperInfo()
 /////////////////////////////////
 String Mount::getMountHardwareInfo()
 {
-  String ret = F("Unknown");
+  String ret = F("Unknown,");
   #if defined(ESP32)
     ret = F("ESP32,");
-  #elif defined(__AVR_ATmega2560__)
+  #elif defined(__AVR_ATmega2560__) || defined(__AVR_ATmega1284p__)
     ret = F("Mega,");
   #endif
 

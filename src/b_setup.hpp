@@ -121,7 +121,8 @@ void setup() {
     #if RA_DRIVER_TYPE == DRIVER_TYPE_A4988_GENERIC
       // include A4988 microstep pins
       //#error "Define Microstep pins and delete this error."
-      digitalWrite(RA_EN_PIN, HIGH);
+      pinMode(RA_EN_PIN, OUTPUT);
+      digitalWrite(RA_EN_PIN, RA_INVERT_EN == 1 ? LOW : HIGH);
       #if defined(RA_MS0_PIN)
         digitalWrite(RA_MS0_PIN, HIGH);  // MS0
       #endif
@@ -158,7 +159,8 @@ void setup() {
   #endif
   #if DEC_STEPPER_TYPE == STEPPER_TYPE_NEMA17  // DEC driver startup (for A4988)
     #if DEC_DRIVER_TYPE == DRIVER_TYPE_A4988_GENERIC  // DEC driver startup (for A4988)
-      digitalWrite(DEC_EN_PIN, HIGH);
+      pinMode(DEC_EN_PIN, OUTPUT);
+      digitalWrite(DEC_EN_PIN, DEC_INVERT_EN == 1 ? LOW : HIGH);
       #if defined(RA_MS0_PIN)
         digitalWrite(DEC_MS0_PIN, HIGH);  // MS1
       #endif

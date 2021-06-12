@@ -74,10 +74,10 @@
  * See Constants.hpp for supported options.
  */
 #ifndef RA_STEPPER_TYPE
-#define RA_STEPPER_TYPE     STEPPER_TYPE_28BYJ48
+#define RA_STEPPER_TYPE     STEPPER_TYPE_NEMA17
 #endif
 #ifndef DEC_STEPPER_TYPE
-#define DEC_STEPPER_TYPE    STEPPER_TYPE_28BYJ48
+#define DEC_STEPPER_TYPE    STEPPER_TYPE_NEMA17
 #endif
 #ifndef AZ_STEPPER_TYPE
 #define AZ_STEPPER_TYPE    STEPPER_TYPE_NONE
@@ -94,10 +94,10 @@
  * See Constants.hpp for supported DRIVER_TYPE options.
  */
 #ifndef RA_DRIVER_TYPE
-#define RA_DRIVER_TYPE      DRIVER_TYPE_ULN2003
+#define RA_DRIVER_TYPE      DRIVER_TYPE_A4988_GENERIC
 #endif
 #ifndef DEC_DRIVER_TYPE
-#define DEC_DRIVER_TYPE     DRIVER_TYPE_ULN2003
+#define DEC_DRIVER_TYPE     DRIVER_TYPE_A4988_GENERIC
 #endif
 #ifndef AZ_DRIVER_TYPE
 #define AZ_DRIVER_TYPE     DRIVER_TYPE_NONE
@@ -111,10 +111,10 @@
 
 // Your pulley tooth count. 16 for the bought (aluminium) one, 20 for the printed one.
 #ifndef RA_PULLEY_TEETH
-#define RA_PULLEY_TEETH     16
+#define RA_PULLEY_TEETH     20
 #endif
 #ifndef DEC_PULLEY_TEETH
-#define DEC_PULLEY_TEETH    16
+#define DEC_PULLEY_TEETH    20
 #endif
 #ifndef AZ_PULLEY_TEETH
 #define AZ_PULLEY_TEETH    16
@@ -232,7 +232,7 @@
   #define POLARIS_RA_MINUTE   58
 #endif
 #ifndef POLARIS_RA_SECOND
-  #define POLARIS_RA_SECOND   34
+  #define POLARIS_RA_SECOND   26
 #endif
 
 // Set this to specify the amount of debug output OAT should send to the serial port.
@@ -254,6 +254,8 @@
   #include "boards/AVR_MKS_GEN_L_V2/pins_MKS_GEN_L_V2.h"
 #elif (BOARD == BOARD_AVR_MKS_GEN_L_V21)
   #include "boards/AVR_MKS_GEN_L_V21/pins_MKS_GEN_L_V21.h"
+#elif (BOARD == BOARD_AVR_CREALITY_V1)
+  #include "boards/AVR_CREALITY_V1/pins_CREALITY_V1.hpp"
 #endif
 
 #include "Configuration_adv.hpp"

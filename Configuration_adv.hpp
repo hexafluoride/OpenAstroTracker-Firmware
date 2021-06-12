@@ -37,13 +37,13 @@
   #endif
 #elif RA_STEPPER_TYPE == STEPPER_TYPE_NEMA17
   #ifndef RA_STEPPER_SPR
-    #define RA_STEPPER_SPR            400   // 28BYJ-48 = 4096  |  NEMA 0.9° = 400  |  NEMA 1.8° = 200
+    #define RA_STEPPER_SPR            200   // 28BYJ-48 = 4096  |  NEMA 0.9° = 400  |  NEMA 1.8° = 200
   #endif
   #ifndef RA_STEPPER_SPEED
-    #define RA_STEPPER_SPEED          1200  // You can change the speed and acceleration of the steppers here. Max. Speed = 3000. 
+    #define RA_STEPPER_SPEED          2400  // You can change the speed and acceleration of the steppers here. Max. Speed = 3000. 
   #endif
   #ifndef RA_STEPPER_ACCELERATION
-    #define RA_STEPPER_ACCELERATION   6000
+    #define RA_STEPPER_ACCELERATION   12000
   #endif
 #else
   #error New RA Stepper type? Add it here...
@@ -61,13 +61,13 @@
   #endif
 #elif DEC_STEPPER_TYPE == STEPPER_TYPE_NEMA17
   #ifndef DEC_STEPPER_SPR
-    #define DEC_STEPPER_SPR            400   // 28BYJ-48 = 4096  |  NEMA 0.9° = 400  |  NEMA 1.8° = 200
+    #define DEC_STEPPER_SPR            200   // 28BYJ-48 = 4096  |  NEMA 0.9° = 400  |  NEMA 1.8° = 200
   #endif
   #ifndef DEC_STEPPER_SPEED
-    #define DEC_STEPPER_SPEED          1300  // You can change the speed and acceleration of the steppers here. Max. Speed = 3000. 
+    #define DEC_STEPPER_SPEED          2400  // You can change the speed and acceleration of the steppers here. Max. Speed = 3000. 
   #endif
   #ifndef DEC_STEPPER_ACCELERATION
-    #define DEC_STEPPER_ACCELERATION   6000
+    #define DEC_STEPPER_ACCELERATION   12000
   #endif
 #else
   #error New DEC Stepper type? Add it here...
@@ -101,7 +101,7 @@
     #define RA_UART_STEALTH_MODE   0
   #endif
 #elif (RA_DRIVER_TYPE == DRIVER_TYPE_A4988_GENERIC) || (RA_DRIVER_TYPE == DRIVER_TYPE_TMC2209_STANDALONE)
-  #define RA_SLEW_MICROSTEPPING 8         // Microstep mode set by MS pin strapping. Use the same microstep mode for both slewing & tracking   
+  #define RA_SLEW_MICROSTEPPING 16         // Microstep mode set by MS pin strapping. Use the same microstep mode for both slewing & tracking   
   #define RA_TRACKING_MICROSTEPPING RA_SLEW_MICROSTEPPING   
 #elif (RA_DRIVER_TYPE == DRIVER_TYPE_ULN2003)
   #define RA_SLEW_MICROSTEPPING 2         // The (default) half-step mode used for slewing RA axis
@@ -246,12 +246,33 @@
 // INVERT AXIS
 // Set to 1 or 0 to invert motor directions
 #ifndef RA_INVERT_DIR 
-#define RA_INVERT_DIR 0 
+#define RA_INVERT_DIR 0
 #endif
 #ifndef DEC_INVERT_DIR 
 #define DEC_INVERT_DIR 0
 #endif
 
+//////////////////////////////
+//
+// INVERT ENABLE
+// Set to 1 or 0 to invert motor enable pin (active low on 1, active high on 0)
+#ifndef RA_INVERT_EN
+#define RA_INVERT_EN 1
+#endif
+#ifndef DEC_INVERT_EN
+#define DEC_INVERT_EN 1
+#endif
+
+/////////////////////////////
+//
+// INVERT STEP
+// Set to 1 or 0 to invert step pin
+#ifndef RA_INVERT_STEP
+#define RA_INVERT_STEP 0
+#endif
+#ifndef DEC_INVERT_STEP
+#define DEC_INVERT_STEP 0
+#endif
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                  ////////

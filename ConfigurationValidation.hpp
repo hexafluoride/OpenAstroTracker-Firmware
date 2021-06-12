@@ -8,7 +8,7 @@
 //////////////////////////////////////
 
 // Platform
-#if defined(ESP32) || defined(__AVR_ATmega2560__)
+#if defined(ESP32) || defined(__AVR_ATmega2560__) || defined(__AVR_ATmega1284P__)
   // Valid platform
 #else
   #error Unsupported platform configuration. Use at own risk.
@@ -17,7 +17,7 @@
 // Display & keypad configurations
 #if defined(ESP32) && ((DISPLAY_TYPE == DISPLAY_TYPE_NONE) || (DISPLAY_TYPE == DISPLAY_TYPE_LCD_JOY_I2C_SSD1306))
   // Valid display for ESP32
-#elif defined(__AVR_ATmega2560__) && ((DISPLAY_TYPE == DISPLAY_TYPE_NONE) || (DISPLAY_TYPE == DISPLAY_TYPE_LCD_KEYPAD) \
+#elif defined(__AVR_ATmega2560__) || defined(__AVR_ATmega1284P__) && ((DISPLAY_TYPE == DISPLAY_TYPE_NONE) || (DISPLAY_TYPE == DISPLAY_TYPE_LCD_KEYPAD) \
   || (DISPLAY_TYPE_LCD_KEYPAD_I2C_MCP23008) || (DISPLAY_TYPE_LCD_KEYPAD_I2C_MCP23017))
   // Valid display for ATmega
 #else
@@ -76,7 +76,7 @@
   #else
     #error Defined an AZ driver, but no AZ stepper.
   #endif
-#elif defined(__AVR_ATmega2560__)
+#elif defined(__AVR_ATmega2560__) || defined(__AVR_ATmega1284P__)
   // Azimuth configuration
   #if (AZ_STEPPER_TYPE == STEPPER_TYPE_28BYJ48) && (AZ_DRIVER_TYPE == DRIVER_TYPE_ULN2003)
     // Valid AZ stepper and driver combination
@@ -114,7 +114,7 @@
   #else
     #error Defined an ALT driver, but no ALT stepper.
   #endif
-#elif defined(__AVR_ATmega2560__)
+#elif defined(__AVR_ATmega2560__) || defined(__AVR_ATmega1284P__)
   // Altitude configuration
   #if (ALT_STEPPER_TYPE == STEPPER_TYPE_28BYJ48) && (ALT_DRIVER_TYPE == DRIVER_TYPE_ULN2003)
     // Valid ALT stepper and driver combination
@@ -152,7 +152,7 @@
   #else
     #error Defined an Focus driver, but no Focus stepper.
   #endif
-#elif defined(__AVR_ATmega2560__)
+#elif defined(__AVR_ATmega2560__) || defined(__AVR_ATmega1284P__)
   // Focus configuration
   #if (FOCUS_STEPPER_TYPE == STEPPER_TYPE_28BYJ48) && (FOCUS_DRIVER_TYPE == DRIVER_TYPE_ULN2003)
     // Valid ALT stepper and driver combination
@@ -223,7 +223,7 @@
 // External sensors
 #if (USE_GPS == 0)
   // Baseline configuration without GPS is valid
-#elif defined(ESP32) || defined(__AVR_ATmega2560__)
+#elif defined(ESP32) || defined(__AVR_ATmega2560__) || defined(__AVR_ATmega1284P__)
   // GPS is supported on ESP32 and ATmega
 #else
   #error Unsupported GPS configuration. Use at own risk.
@@ -231,7 +231,7 @@
 
 #if (USE_GYRO_LEVEL == 0)
   // Baseline configuration without gyro is valid
-#elif defined(ESP32) || defined(__AVR_ATmega2560__)
+#elif defined(ESP32) || defined(__AVR_ATmega2560__) || defined(__AVR_ATmega1284P__)
   // Gyro is supported on ESP32 and ATmega
 #else
   #error Unsupported gyro configuration. Use at own risk.
@@ -254,7 +254,7 @@
      // Required pin assignments missing
      #error Missing pin assignments for configured DEC DRIVER_TYPE_A4988_GENERIC or DRIVER_TYPE_TMC2209_STANDALONE driver
   #endif
-  #if (!defined(DEC_MS0_PIN) || !defined(DEC_MS1_PIN) || !defined(DEC_MS2_PIN)) && (BOARD != BOARD_AVR_MKS_GEN_L_V1)
+  #if (!defined(DEC_MS0_PIN) || !defined(DEC_MS1_PIN) || !defined(DEC_MS2_PIN)) && !(BOARD == BOARD_AVR_MKS_GEN_L_V1 || BOARD == BOARD_AVR_CREALITY_V1)
      #warning Missing pin assignments for MS pins
   #endif
 #elif (DEC_DRIVER_TYPE == DRIVER_TYPE_TMC2209_UART)
@@ -278,7 +278,7 @@
      // Required pin assignments missing
      #error Missing pin assignments for configured RA DRIVER_TYPE_A4988_GENERIC or DRIVER_TYPE_TMC2209_STANDALONE driver
   #endif
-  #if (!defined(RA_MS0_PIN) || !defined(RA_MS1_PIN) || !defined(RA_MS2_PIN)) && (BOARD != BOARD_AVR_MKS_GEN_L_V1)
+  #if (!defined(RA_MS0_PIN) || !defined(RA_MS1_PIN) || !defined(RA_MS2_PIN)) && !(BOARD == BOARD_AVR_MKS_GEN_L_V1 || BOARD == BOARD_AVR_CREALITY_V1)
      #warning Missing pin assignments for MS pins
   #endif
 #elif (RA_DRIVER_TYPE == DRIVER_TYPE_TMC2209_UART)

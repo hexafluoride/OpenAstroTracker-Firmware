@@ -9,7 +9,7 @@
 
 #if defined ESP32
   // We don't support ESP32 boards in interrupt mode
-#elif defined __AVR_ATmega2560__   // Arduino Mega
+#elif defined __AVR_ATmega2560__ || defined __AVR_ATmega1284P__  // Arduino Mega
   #define USE_TIMER_1     true
   #define USE_TIMER_2     true
   #define USE_TIMER_3     false
@@ -71,7 +71,7 @@ void InterruptCallback::start(){
 }
 */
 
-#elif defined __AVR_ATmega2560__
+#elif defined __AVR_ATmega2560__ || defined __AVR_ATmega1284P__
 
 bool InterruptCallback::setInterval(float intervalMs, interrupt_callback_p callback, void* payload)
 {
